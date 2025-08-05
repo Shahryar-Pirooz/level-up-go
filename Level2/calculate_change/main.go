@@ -27,12 +27,11 @@ func calculateChange(amount float64) map[coin]int {
 	change := make(map[coin]int)
 	for _, coin := range coins {
 		if amount >= coin.value {
-			count := math.Floor(amount/coin.value)
-			amount = amount - count*coin.value
+			count := math.Floor(amount / coin.value)
+			amount -= count * coin.value
 			change[coin] = int(count)
 		}
 	}
-
 	return change
 }
 
