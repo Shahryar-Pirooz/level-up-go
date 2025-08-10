@@ -7,12 +7,36 @@ import (
 
 // isBalanced returns whether the given expression
 // has balanced brackets.
+var brackets = map[rune]rune{
+	'(': ')',
+	'[': ']',
+	'{': '}',
+}
+
 func isBalanced(expr string) bool {
-	panic("NOT IMPLEMENTED")
+
+	for k, v := range brackets {
+		var (
+			keyExist = false
+			valExist = false
+		)
+		for _, x := range expr {
+			if x == k {
+				keyExist = true
+			}
+			if x == v {
+				valExist = true
+			}
+		}
+		if keyExist && !valExist {
+			return false
+		}
+	}
+	return true
 }
 
 // printResult prints whether the expression is balanced.
-func printResult(expr string, balanced bool){ 
+func printResult(expr string, balanced bool) {
 	if balanced {
 		log.Printf("%s is balanced.\n", expr)
 		return
